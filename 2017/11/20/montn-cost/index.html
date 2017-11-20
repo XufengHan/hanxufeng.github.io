@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 挖出一片天</title>
+  <title>月度花费 | 挖出一片天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="挖出一片天">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+  <meta name="description" content="数据源这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。123456library(tidyverse)library(wordcloud2)library(recharts)library(reshape2)fo">
+<meta name="keywords" content="R语言 Echarts">
+<meta property="og:type" content="article">
+<meta property="og:title" content="月度花费">
+<meta property="og:url" content="http://yoursite.com/2017/11/20/montn-cost/index.html">
 <meta property="og:site_name" content="挖出一片天">
+<meta property="og:description" content="数据源这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。123456library(tidyverse)library(wordcloud2)library(recharts)library(reshape2)food&amp;lt;-read.csv(&amp;apos;food.csv&amp;apos;,hea">
+<meta property="og:updated_time" content="2017-11-20T08:40:51.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="挖出一片天">
+<meta name="twitter:title" content="月度花费">
+<meta name="twitter:description" content="数据源这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。123456library(tidyverse)library(wordcloud2)library(recharts)library(reshape2)food&amp;lt;-read.csv(&amp;apos;food.csv&amp;apos;,hea">
   
     <link rel="alternative" href="/atom.xml" title="挖出一片天" type="application/atom+xml">
   
@@ -155,36 +160,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-montn-cost" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/20/montn-cost/" class="archive-article-date">
-  	<time datetime="2017-11-20T08:39:39.283Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/20/montn-cost/">月度花费</a>
+    <h1 class="article-title" itemprop="name">
+      月度花费
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2017/11/20/montn-cost/" class="archive-article-date">
+  	<time datetime="2017-11-20T08:39:39.283Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p>这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">library(tidyverse)</span><br><span class="line">library(wordcloud2)</span><br><span class="line">library(recharts)</span><br><span class="line">library(reshape2)</span><br><span class="line">food&lt;-read.csv(&apos;food.csv&apos;,header=T)</span><br><span class="line">cost&lt;-read.csv(&quot;cost.csv&quot;,header = T)</span><br></pre></td></tr></table></figure></p>
+<h1 id="每天的吃饭开销"><a href="#每天的吃饭开销" class="headerlink" title="每天的吃饭开销"></a>每天的吃饭开销</h1><p>用Echart来看看我每天简朴的饮食情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eLine(food,xvar=~Date,yvar=~Breakfast+Lunch+Dinner)</span><br></pre></td></tr></table></figure></p>
+<h1 id="吃饭开销雷达图"><a href="#吃饭开销雷达图" class="headerlink" title="吃饭开销雷达图"></a>吃饭开销雷达图</h1><p>用雷达图来看我每周一天三餐的消费会不会直观点，好吧其实并没有。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">food$week&lt;-c(&apos;Mon&apos;,&apos;Tue&apos;,&apos;Wed&apos;,&apos;Thu&apos;,&apos;Fri&apos;,&apos;Sat&apos;,&apos;Sun&apos;,&apos;Mon&apos;,&apos;Tue&apos;,&apos;Wed&apos;,&apos;Thu&apos;,&apos;Fri&apos;,&apos;Sat&apos;,&apos;Sun&apos;,&apos;Mon&apos;,&apos;Tue&apos;,&apos;Wed&apos;,&apos;Thu&apos;,&apos;Fri&apos;,&apos;Sat&apos;,&apos;Sun&apos;,&apos;Mon&apos;)</span><br><span class="line">food_long&lt;-melt(food[,-5],value.name = &quot;Money&quot;,variable.name = &quot;food&quot;)</span><br><span class="line">eRadar(food_long,xvar= ~week, yvar=~Money, series=~food)</span><br></pre></td></tr></table></figure></p>
+<h1 id="数据补充说明"><a href="#数据补充说明" class="headerlink" title="数据补充说明"></a>数据补充说明</h1><p>大家可能看到我的不少伙食开销是0，这其中发生了什么呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">food$label&lt;-rep(1,22)#添加计数标签</span><br><span class="line">sentence&lt;-filter(food,Dinner==0)%&gt;%group_by(event)%&gt;%summarise(freq=sum(label))#分类汇总</span><br><span class="line">wordcloud2(sentence,size=0.5)</span><br></pre></td></tr></table></figure></p>
+<p>图中可以看到，我靠煮汤圆和泡面蹭过了6次晚餐，留宿朋友+冲网费换来了一顿请客，有时候周末早餐没吃（睡过了），回了趟学校刷了校园卡，再就是部门组织的一次聚餐了，看了之后有没觉得我们的活动状况和账单息息相关。</p>
+<h1 id="其它生活开支"><a href="#其它生活开支" class="headerlink" title="其它生活开支"></a>其它生活开支</h1><p>真正的大头来了，毕竟我国的恩格尔系数有那么高了，食物占不到我们开销的多大比例。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wordcloud2(cost,size=1)</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，即使没算进初期的安置费用，我的生活开销仍然是一笔不菲的数额，若大的换房两个字让我和房子中介的撕逼过程历历在目，代课说的是一笔不可描述的交易，其它的看起来仿佛也没有多少。</p>
+<p>总的来说，我这22天花的钱如下：</p>
+<font size="40">2929.5元</font>
+
+
+
+<p>以上就是我有记录的实习以来的开销了的实习过程中的开销了，非常详细，希望能对大家有所借鉴。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/zhifubao.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -196,46 +243,129 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2017/11/20/montn-cost/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/11/20/hello-world/" class="archive-article-date">
-  	<time datetime="2017-11-20T03:59:00.074Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/11/20/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据源"><span class="toc-number">1.</span> <span class="toc-text">数据源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#每天的吃饭开销"><span class="toc-number">2.</span> <span class="toc-text">每天的吃饭开销</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#吃饭开销雷达图"><span class="toc-number">3.</span> <span class="toc-text">吃饭开销雷达图</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据补充说明"><span class="toc-number">4.</span> <span class="toc-text">数据补充说明</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其它生活开支"><span class="toc-number">5.</span> <span class="toc-text">其它生活开支</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="montn-cost" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytk7QSMM",
+        conf: "e8270c85a179a9130b8f9b96c207c995"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -258,8 +388,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
