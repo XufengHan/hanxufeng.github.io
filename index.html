@@ -177,7 +177,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p><img src="https://github.com/XufengHan/Month-Cost" alt="github地址"><br>这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。</p>
+        <h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p><a href="https://github.com/XufengHan/Month-Cost" target="_blank" rel="noopener">github地址</a><br>这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">library(tidyverse)</span><br><span class="line">library(wordcloud2)</span><br><span class="line">library(recharts)</span><br><span class="line">library(reshape2)</span><br><span class="line">food&lt;-read.csv(&apos;food.csv&apos;,header=T)</span><br><span class="line">cost&lt;-read.csv(&quot;cost.csv&quot;,header = T)</span><br></pre></td></tr></table></figure>
 <h1 id="每天的吃饭开销"><a href="#每天的吃饭开销" class="headerlink" title="每天的吃饭开销"></a>每天的吃饭开销</h1><p>用Echart来看看我每天简朴的饮食情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eLine(food,xvar=~Date,yvar=~Breakfast+Lunch+Dinner)</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/pic1.png" alt="pic1"></p>
