@@ -8,21 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>实习开销 | 挖出一片天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据源github地址这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。 123456library(tidyverse)library(wordcloud2)library(recharts)library(re">
+  <meta name="description" content="数据源github地址这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。下面的代码就是用R语言数据处理和调用Echart的过程，可惜我还并不知道怎么在markdown文件里显示交互式图片，不能完全展现出Echart">
 <meta name="keywords" content="R语言 Echarts">
 <meta property="og:type" content="article">
 <meta property="og:title" content="实习开销">
 <meta property="og:url" content="http://yoursite.com/2017/11/20/montn-cost/index.html">
 <meta property="og:site_name" content="挖出一片天">
-<meta property="og:description" content="数据源github地址这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。 123456library(tidyverse)library(wordcloud2)library(recharts)library(reshape2)food&amp;lt;-read.csv(&amp;apos;food.csv&amp;">
+<meta property="og:description" content="数据源github地址这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。下面的代码就是用R语言数据处理和调用Echart的过程，可惜我还并不知道怎么在markdown文件里显示交互式图片，不能完全展现出Echart图表的效果。 123456library(tidyverse)library(w">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/pic1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/pic2.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/pic3.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/pic4.png">
-<meta property="og:updated_time" content="2017-11-20T09:55:16.240Z">
+<meta property="og:updated_time" content="2017-11-20T10:09:45.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实习开销">
-<meta name="twitter:description" content="数据源github地址这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。 123456library(tidyverse)library(wordcloud2)library(recharts)library(reshape2)food&amp;lt;-read.csv(&amp;apos;food.csv&amp;">
+<meta name="twitter:description" content="数据源github地址这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。下面的代码就是用R语言数据处理和调用Echart的过程，可惜我还并不知道怎么在markdown文件里显示交互式图片，不能完全展现出Echart图表的效果。 123456library(tidyverse)library(w">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/pic1.png">
   
     <link rel="alternative" href="/atom.xml" title="挖出一片天" type="application/atom+xml">
@@ -185,7 +185,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p><a href="https://github.com/XufengHan/Month-Cost" target="_blank" rel="noopener">github地址</a><br>这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。</p>
+        <h1 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h1><p><a href="https://github.com/XufengHan/Month-Cost" target="_blank" rel="noopener">github地址</a><br>这份数据是我自己记录的自10月15日以来的生活开销，并不足一个月，并不是从我实习开始算起，所以有些花费有遗漏，比如房租，安置花费，还有我买的一些食材什么的。<br>下面的代码就是用R语言数据处理和调用Echart的过程，可惜我还并不知道怎么在markdown文件里显示交互式图片，不能完全展现出Echart图表的效果。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">library(tidyverse)</span><br><span class="line">library(wordcloud2)</span><br><span class="line">library(recharts)</span><br><span class="line">library(reshape2)</span><br><span class="line">food&lt;-read.csv(&apos;food.csv&apos;,header=T)</span><br><span class="line">cost&lt;-read.csv(&quot;cost.csv&quot;,header = T)</span><br></pre></td></tr></table></figure>
 <h1 id="每天的吃饭开销"><a href="#每天的吃饭开销" class="headerlink" title="每天的吃饭开销"></a>每天的吃饭开销</h1><p>用Echart来看看我每天简朴的饮食情况<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eLine(food,xvar=~Date,yvar=~Breakfast+Lunch+Dinner)</span><br></pre></td></tr></table></figure></p>
 <p><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/pic1.png" alt="pic1"></p>
@@ -200,7 +200,7 @@
 
 
 
-<p>以上就是我有记录的实习以来的开销了的实习过程中的开销了，非常详细，希望能对大家有所借鉴。</p>
+<p>以上就是我记下来的实习过程中的开销了，保留这些数据的起因是因为我突发奇想想记录一下我的开支，最近又突然想把它作为我github的第一个项目，以后来看的话会不会很有纪念性呢-_-!</p>
 
       
 
@@ -314,6 +314,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/11/20/build-blog/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          用github构建博客
+        
+      </div>
+    </a>
   
   
     <a href="/2017/11/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
@@ -464,6 +473,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+              </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
