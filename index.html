@@ -151,6 +151,92 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-month-cost" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/20/month-cost/">�¶Ȼ���</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/20/month-cost/" class="archive-article-date">
+  	<time datetime="2017-11-20T08:30:55.899Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="����Դ"><a href="#����Դ" class="headerlink" title="����Դ"></a>����Դ</h1><p>������������Լ���¼����10��15���������������������һ���£������Ǵ���ʵϰ��ʼ����������Щ��������©�����緿�⣬���û��ѣ����������һЩʳ��ʲô�ġ�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">library(tidyverse)</span><br><span class="line">library(wordcloud2)</span><br><span class="line">library(recharts)</span><br><span class="line">library(reshape2)</span><br><span class="line">food&lt;-read.csv(&apos;food.csv&apos;,header=T)</span><br><span class="line">cost&lt;-read.csv(&quot;cost.csv&quot;,header = T)</span><br></pre></td></tr></table></figure></p>
+<h1 id="y��ĳԷ�����"><a href="#y��ĳԷ�����" class="headerlink" title="ÿ��ĳԷ�����"></a>ÿ��ĳԷ�����</h1><p>��Echart��������ÿ����ӵ���ʳ���<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eLine(food,xvar=~Date,yvar=~Breakfast+Lunch+Dinner)</span><br></pre></td></tr></table></figure></p>
+<h1 id="�Է������״�ͼ"><a href="#�Է������״�ͼ" class="headerlink" title="�Է������״�ͼ"></a>�Է������״�ͼ</h1><p>���״�ͼ������ÿ��һ�����͵����ѻ᲻��ֱ�۵㣬�ð���ʵ��û�С�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">food$week&lt;-c(&apos;Mon&apos;,&apos;Tue&apos;,&apos;Wed&apos;,&apos;Thu&apos;,&apos;Fri&apos;,&apos;Sat&apos;,&apos;Sun&apos;,&apos;Mon&apos;,&apos;Tue&apos;,&apos;Wed&apos;,&apos;Thu&apos;,&apos;Fri&apos;,&apos;Sat&apos;,&apos;Sun&apos;,&apos;Mon&apos;,&apos;Tue&apos;,&apos;Wed&apos;,&apos;Thu&apos;,&apos;Fri&apos;,&apos;Sat&apos;,&apos;Sun&apos;,&apos;Mon&apos;)</span><br><span class="line">food_long&lt;-melt(food[,-5],value.name = &quot;Money&quot;,variable.name = &quot;food&quot;)</span><br><span class="line">eRadar(food_long,xvar= ~week, yvar=~Money, series=~food)</span><br></pre></td></tr></table></figure></p>
+<h1 id="���ݲ���˵��"><a href="#���ݲ���˵��" class="headerlink" title="���ݲ���˵��"></a>���ݲ���˵��</h1><p>��ҿ��ܿ����ҵĲ��ٻ�ʳ������0�������з�����ʲô�أ�<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">food$label&lt;-rep(1,22)#��Ӽ�����ǩ</span><br><span class="line">sentence&lt;-filter(food,Dinner==0)%&gt;%group_by(event)%&gt;%summarise(freq=sum(label))#�������</span><br><span class="line">wordcloud2(sentence,size=0.5)</span><br></pre></td></tr></table></figure></p>
+<p>ͼ�п��Կ������ҿ�����Բ����������6����ͣ���������+�����ѻ�����һ����ͣ���ʱ����ĩ���û�ԣ�˯���ˣ���������ѧУˢ��У԰�����پ��ǲ�����֯��һ�ξ۲��ˣ�����֮����û�������ǵĻ״�����˵�ϢϢ��ء�</p>
+<h1 id="�������֧"><a href="#�������֧" class="headerlink" title="�������֧"></a>�������֧</h1><p>�����Ĵ�ͷ���ˣ��Ͼ��ҹ��Ķ����ϵ������ô���ˣ�ʳ��ռ�������ǿ����Ķ�������<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wordcloud2(cost,size=1)</span><br></pre></td></tr></table></figure></p>
+<p>���Կ�������ʹû������ڵİ��÷��ã��ҵ��������Ȼ��һ�ʲ��Ƶ�������Ļ������������Һͷ����н��˺�ƹ���������Ŀ������˵����һ�ʲ��������Ľ��ף������Ŀ������·�Ҳû�ж��١�</p>
+<p>�ܵ���˵������22�컨��Ǯ���£�</p>
+<font size="40">2929.5Ԫ</font>
+
+
+
+<p>���Ͼ������м�¼��ʵϰ�����Ŀ����˵�ʵϰ�����еĿ����ˣ��ǳ���ϸ��ϣ���ܶԴ�����������</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">R���� Echarts</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/20/month-cost/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -313,6 +399,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">R���� Echarts</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
