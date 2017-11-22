@@ -28,6 +28,8 @@ hexo s
 ``` 
 自己按照需求改_config.yml文件，记得hexo根目录和yilia根目录下都有这个文件。在yilia下的_config.yml文件里的menu下添加'目录： /archives'（不包括''号）就可以有你的文章列表栏了，tag的不知道是干嘛的，注释掉了。
 支付宝，微信，和头像的图片我都自己放在yilia->source->img文件夹下了，路径直接写’/img/pic.png'就行了
+config.yml 具体怎么写看[litten](https://github.com/litten/)的[博客备份](https://github.com/litten/BlogBackup)。
+
 
 ## 搭建评论系统
 这个就是我自己捣鼓出来的了，多说目前已经倒闭了，我们的评论系统用的是畅言。大家可能发现注册畅言需要备案号，而我们只有一个域名，没有服务器，是无法备案并且有备案号的，这里需要一个骚操作。
@@ -45,4 +47,4 @@ hexo s
 虽然还有些功能没实现，到这里我们建github博客的攻略还是要告一段落了。
 
 
-最后我再总结一下<font size=10>腾讯云</font>，<font size=10>斗鱼</font>，快来给我结一下广告费。
+最后我再总结一下，<font size=10>腾讯云</font>，<font size=10>斗鱼</font>，快来给我结一下广告费。

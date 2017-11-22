@@ -180,13 +180,13 @@ $ git config --global user.email  <span class="string">"xxx@qq.com"</span>// 填
 <p>这个命令能在本地生成一个网页，访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 就可以查看</p>
 <pre><code class="bash">hexo s
 </code></pre>
-<p>自己按照需求改_config.yml文件，记得hexo根目录和yilia根目录下都有这个文件。在yilia下的_config.yml文件里的menu下添加’目录： /archives’（不包括’’号）就可以有你的文章列表栏了，tag的不知道是干嘛的，注释掉了。<br>支付宝，微信，和头像的图片我都自己放在yilia-&gt;source-&gt;img文件夹下了，路径直接写’/img/pic.png’就行了</p>
+<p>自己按照需求改_config.yml文件，记得hexo根目录和yilia根目录下都有这个文件。在yilia下的_config.yml文件里的menu下添加’目录： /archives’（不包括’’号）就可以有你的文章列表栏了，tag的不知道是干嘛的，注释掉了。<br>支付宝，微信，和头像的图片我都自己放在yilia-&gt;source-&gt;img文件夹下了，路径直接写’/img/pic.png’就行了<br>config.yml 具体怎么写看<a href="https://github.com/litten/" target="_blank" rel="noopener">litten</a>的<a href="https://github.com/litten/BlogBackup" target="_blank" rel="noopener">博客备份</a>。</p>
 <h2 id="搭建评论系统"><a href="#搭建评论系统" class="headerlink" title="搭建评论系统"></a>搭建评论系统</h2><p>这个就是我自己捣鼓出来的了，多说目前已经倒闭了，我们的评论系统用的是畅言。大家可能发现注册畅言需要备案号，而我们只有一个域名，没有服务器，是无法备案并且有备案号的，这里需要一个骚操作。</p>
 <h3 id="搞定畅言评论系统的备案号"><a href="#搞定畅言评论系统的备案号" class="headerlink" title="搞定畅言评论系统的备案号"></a>搞定畅言评论系统的备案号</h3><p>怎么搞定很简单，随便找一个有备案的网站，拉倒网站底部，复制它们额备案号，然后在域名白名单里填上我们的域名就行了。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/beanhao.png" alt="pic1"></p>
 <p>畅言审核通过以后，拿到APP ID 和 APP KEY，如下图<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/changyan.png" alt="pic2"></p>
 <p>在yilia下的_config.yml文件里的changyan_appid和changyan_conf 后面填上我们的APP ID，和 APP KEY，更新一下博客，我们的评论系统就出来了。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>虽然还有些功能没实现，到这里我们建github博客的攻略还是要告一段落了。</p>
-<p>最后我在总结一下<font size="15">腾讯云</font>，<font size="15">斗鱼</font>，快来给我结一下广告费。</p>
+<p>最后我再总结一下<font size="15">腾讯云</font>，<font size="15">斗鱼</font>，快来给我结一下广告费。</p>
 
       
 
