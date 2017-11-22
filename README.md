@@ -27,7 +27,8 @@ $ git config --global user.email  "xxx@qq.com"// 填写你的github注册邮箱
 hexo s 
 ``` 
 自己按照需求改_config.yml文件，记得hexo根目录和yilia根目录下都有这个文件。在yilia下的_config.yml文件里的menu下添加'目录： /archives'（不包括''号）就可以有你的文章列表栏了，tag的不知道是干嘛的，注释掉了。
-支付宝，微信，和头像的图片我都自己放在yilia->source->img文件夹下了，路径直接写’/img/pic.png'就行了
+支付宝，微信，和头像的图片我都自己放在yilia->source->img文件夹下了，路径直接写’/img/pic.png'就行了。
+
 config.yml 具体怎么写看[litten](https://github.com/litten/)的[博客备份](https://github.com/litten/BlogBackup)。
 
 
