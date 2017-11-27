@@ -8,20 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>简单的kettle的数据抽取过程 | 挖出一片天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出，我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。配置成功以后打开kettle文件夹下的s">
+  <meta name="description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出。我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测j">
 <meta name="keywords" content="kettle ETL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="简单的kettle的数据抽取过程">
 <meta property="og:url" content="http://yoursite.com/2017/11/24/ETL-kettle/index.html">
 <meta property="og:site_name" content="挖出一片天">
-<meta property="og:description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出，我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。配置成功以后打开kettle文件夹下的spoon.bat文件就会弹出下图的kettle界面。 准备工具-kettle下载">
+<meta property="og:description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出。我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。配置成功以后打开kettle文件">
 <meta property="og:image" content="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/2YGNOYYPTjBWMPbjoLfsgyGUFOp.HLWDZImVZ4fgKQM!/m/dPMAAAAAAAAAnull&bo=sgLdAQAAAAADB04!&rf=photolist&t=5">
-<meta property="og:image" content="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/lcWA0JXxHyPfwTieN3GkJPs8QAN6w2h*.gNm6f7gf3s!/m/dPMAAAAAAAAAnull&bo=1QSAAgAAAAADB3E!&rf=photolist&t=5">
-<meta property="og:image" content="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/6DlLQJf331anP4OiIA*CvSUymtGaH1zudacKmVm2Us8!/m/dPMAAAAAAAAAnull&bo=AASAAgAAAAADB6Q!&rf=photolist&t=5">
-<meta property="og:updated_time" content="2017-11-24T07:45:24.012Z">
+<meta property="og:updated_time" content="2017-11-27T01:35:51.536Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的kettle的数据抽取过程">
-<meta name="twitter:description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出，我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。配置成功以后打开kettle文件夹下的spoon.bat文件就会弹出下图的kettle界面。 准备工具-kettle下载">
+<meta name="twitter:description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出。我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。配置成功以后打开kettle文件">
 <meta name="twitter:image" content="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/2YGNOYYPTjBWMPbjoLfsgyGUFOp.HLWDZImVZ4fgKQM!/m/dPMAAAAAAAAAnull&bo=sgLdAQAAAAADB04!&rf=photolist&t=5">
   
     <link rel="alternative" href="/atom.xml" title="挖出一片天" type="application/atom+xml">
@@ -178,10 +176,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，<br>然后以目标格式倒出，我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。<br>配置成功以后打开kettle文件夹下的spoon.bat文件就会弹出下图的kettle界面。<br><img src="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/2YGNOYYPTjBWMPbjoLfsgyGUFOp.HLWDZImVZ4fgKQM!/m/dPMAAAAAAAAAnull&amp;bo=sgLdAQAAAAADB04!&amp;rf=photolist&amp;t=5" alt="pic"></p>
+        <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处<br>理，然后以目标格式倒出。<br>我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。<br>配置成功以后打开kettle文件夹下的spoon.bat文件就会弹出下图的kettle界面。<br><img src="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/2YGNOYYPTjBWMPbjoLfsgyGUFOp.HLWDZImVZ4fgKQM!/m/dPMAAAAAAAAAnull&amp;bo=sgLdAQAAAAADB04!&amp;rf=photolist&amp;t=5" alt="pic"></p>
 <h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h3><p>-<a href="http://community.pentaho.com" target="_blank" rel="noopener">kettle下载</a><br>-<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">java下载</a><br>-<a href="https://jingyan.baidu.com/article/6dad5075d1dc40a123e36ea3.html" target="_blank" rel="noopener">java的环境配置</a><br>未完待续</p>
-<p><img src="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/lcWA0JXxHyPfwTieN3GkJPs8QAN6w2h*.gNm6f7gf3s!/m/dPMAAAAAAAAAnull&amp;bo=1QSAAgAAAAADB3E!&amp;rf=photolist&amp;t=5" alt="pic1"></p>
-<p><img src="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/6DlLQJf331anP4OiIA*CvSUymtGaH1zudacKmVm2Us8!/m/dPMAAAAAAAAAnull&amp;bo=AASAAgAAAAADB6Q!&amp;rf=photolist&amp;t=5" alt="pic2"></p>
+<p><a href="http://a1.qpic.cn/psb?/V10JKKf72Pgr8J/3wApSQRpp8xXvyCJnlR1uaGNzVprftHaj3*66rmp4hI!/b/dPMAAAAAAAAA&amp;bo=OAWzAjgFswIDByI!&amp;rf=viewer_4" target="_blank" rel="noopener">pic1</a></p>
+<p><a href="http://a3.qpic.cn/psb?/V10JKKf72Pgr8J/9eF5xGZUqweoUH1AQRKwfE9ngg9Ba9IjlQJeaK1g7KI!/m/dPIAAAAAAAAAnull&amp;bo=NASIAjQEiAIDByI!&amp;rf=photolist&amp;t=5" target="_blank" rel="noopener">pic2</a></p>
 
       
 
@@ -447,11 +445,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
              
               <li class="article-tag-list-item">
