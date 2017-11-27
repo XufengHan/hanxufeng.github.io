@@ -17,8 +17,8 @@
 <meta property="og:description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出。我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。配置成功以后打开kettle文件">
 <meta property="og:image" content="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/2YGNOYYPTjBWMPbjoLfsgyGUFOp.HLWDZImVZ4fgKQM!/m/dPMAAAAAAAAAnull&bo=sgLdAQAAAAADB04!&rf=photolist&t=5">
 <meta property="og:image" content="http://a1.qpic.cn/psb?/V10JKKf72Pgr8J/3wApSQRpp8xXvyCJnlR1uaGNzVprftHaj3*66rmp4hI!/b/dPMAAAAAAAAA&bo=OAWzAjgFswIDByI!&rf=viewer_4">
-<meta property="og:image" content="http://a3.qpic.cn/psb?/V10JKKf72Pgr8J/9eF5xGZUqweoUH1AQRKwfE9ngg9Ba9IjlQJeaK1g7KI!/m/dPIAAAAAAAAAnull&bo=NASIAjQEiAIDByI!&rf=photolist&t=5">
-<meta property="og:updated_time" content="2017-11-27T01:51:40.901Z">
+<meta property="og:image" content="http://a3.qpic.cn/psb?/V10JKKf72Pgr8J/OowOf2gyW9RThfr30e*Yst9TxrOgbIBlyQSwqA8u75A!/b/dPIAAAAAAAAA&bo=MgWyAjIFsgIDCSw!&rf=viewer_4">
+<meta property="og:updated_time" content="2017-11-27T02:30:39.631Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的kettle的数据抽取过程">
 <meta name="twitter:description" content="准备工作kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处理，然后以目标格式倒出。我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。配置成功以后打开kettle文件">
@@ -179,9 +179,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>kettle是一款开源免费的TL工具，kettle的功能就像它的中文名字‘水壶’一样，他可以将不同来源的数据抽取过来处<br>理，然后以目标格式倒出。<br>我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9我们这次测试的就是一个简单的抽取功能。kettle需要配置好jdk才能打开，亲测jdk9.0.1会有问题，我这里用的是1.8.0。<br>配置成功以后打开kettle文件夹下的spoon.bat文件就会弹出下图的kettle界面。<br><img src="http://a4.qpic.cn/psb?/V10JKKf72Pgr8J/2YGNOYYPTjBWMPbjoLfsgyGUFOp.HLWDZImVZ4fgKQM!/m/dPMAAAAAAAAAnull&amp;bo=sgLdAQAAAAADB04!&amp;rf=photolist&amp;t=5" alt="pic"></p>
-<h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h3><p>-<a href="http://community.pentaho.com" target="_blank" rel="noopener">kettle下载</a><br>-<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">java下载</a><br>-<a href="https://jingyan.baidu.com/article/6dad5075d1dc40a123e36ea3.html" target="_blank" rel="noopener">java的环境配置</a><br>未完待续</p>
-<p><img src="http://a1.qpic.cn/psb?/V10JKKf72Pgr8J/3wApSQRpp8xXvyCJnlR1uaGNzVprftHaj3*66rmp4hI!/b/dPMAAAAAAAAA&amp;bo=OAWzAjgFswIDByI!&amp;rf=viewer_4" alt="pic1"></p>
-<p><img src="http://a3.qpic.cn/psb?/V10JKKf72Pgr8J/9eF5xGZUqweoUH1AQRKwfE9ngg9Ba9IjlQJeaK1g7KI!/m/dPIAAAAAAAAAnull&amp;bo=NASIAjQEiAIDByI!&amp;rf=photolist&amp;t=5" alt="pic2"></p>
+<h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h3><p>-<a href="http://community.pentaho.com" target="_blank" rel="noopener">kettle下载</a><br>-<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">java下载</a><br>-<a href="https://jingyan.baidu.com/article/6dad5075d1dc40a123e36ea3.html" target="_blank" rel="noopener">java的环境配置</a></p>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="设计事件"><a href="#设计事件" class="headerlink" title="设计事件"></a>设计事件</h3><p>接下来就可以进行我们的数据抽取过程了，新建一个转换，在输入输出里分别选择表输入和插入更新，再按住shift键连接，完成的结果如下图。<br><img src="http://a1.qpic.cn/psb?/V10JKKf72Pgr8J/3wApSQRpp8xXvyCJnlR1uaGNzVprftHaj3*66rmp4hI!/b/dPMAAAAAAAAA&amp;bo=OAWzAjgFswIDByI!&amp;rf=viewer_4" alt="pic1"></p>
+<h3 id="配置数据源"><a href="#配置数据源" class="headerlink" title="配置数据源"></a>配置数据源</h3><p>双击这两个图标，完成数据源配置。主机名称是你的服务器或主机地址，数据库名称是你的SID，端口号要看连接的数据库种类，比如ORACLE就是1521，用户名和密码就是你的数据库的用户名和密码了。<br><img src="http://a3.qpic.cn/psb?/V10JKKf72Pgr8J/OowOf2gyW9RThfr30e*Yst9TxrOgbIBlyQSwqA8u75A!/b/dPIAAAAAAAAA&amp;bo=MgWyAjIFsgIDCSw!&amp;rf=viewer_4" alt="pic2"><br>数据源配置成功后，分别选择对应的表，点击运行就可以开始抽取过程了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我的理解里kettle是一款流程设计软件，不管是要完成表的抽取，数据库的抽取，或者各种数据源的抽取，都是先设计好事件节点，再完成配置，最终得到我们想要的结果这个过程。总的来说，在学习这种交互式的工具过程中，我认为明确需求比了解<br>功能更重要。</p>
 
       
 
@@ -325,7 +326,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工具"><span class="toc-number">1.1.</span> <span class="toc-text">准备工具</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工具"><span class="toc-number">1.1.</span> <span class="toc-text">准备工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作步骤"><span class="toc-number">2.</span> <span class="toc-text">操作步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设计事件"><span class="toc-number">2.1.</span> <span class="toc-text">设计事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置数据源"><span class="toc-number">2.2.</span> <span class="toc-text">配置数据源</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -447,7 +448,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -455,7 +456,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
             
             <div class="clearfix"></div>
