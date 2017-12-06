@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/11/29/python-pc/index.html">
 <meta property="og:site_name" content="挖出一片天">
 <meta property="og:description" content="使用工具anaconda-python3.6安装完成并配置好环境之后，我们就可以使用python了，anaconda里包含了许多常见的python工具。 解析HTML网页   米开朗基罗被问及如何完成《大卫》这样匠心独具的雕刻作品时，他有一段著名的回答：“很简单，你只要用锤子把石头上不像大卫的地方敲掉就行了。”   解析HTML网页也是相似的工作，我们要获取的数据一般都隐藏在复杂的HTML源码里，">
-<meta property="og:updated_time" content="2017-12-04T03:42:25.463Z">
+<meta property="og:updated_time" content="2017-12-04T05:38:40.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫">
 <meta name="twitter:description" content="使用工具anaconda-python3.6安装完成并配置好环境之后，我们就可以使用python了，anaconda里包含了许多常见的python工具。 解析HTML网页   米开朗基罗被问及如何完成《大卫》这样匠心独具的雕刻作品时，他有一段著名的回答：“很简单，你只要用锤子把石头上不像大卫的地方敲掉就行了。”   解析HTML网页也是相似的工作，我们要获取的数据一般都隐藏在复杂的HTML源码里，">
@@ -176,23 +176,26 @@
       
         <h2 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h2><p><a href="https://www.anaconda.com/download/" target="_blank" rel="noopener">anaconda-python3.6</a><br>安装完成并配置好环境之后，我们就可以使用python了，anaconda里包含了许多常见的python工具。</p>
 <h2 id="解析HTML网页"><a href="#解析HTML网页" class="headerlink" title="解析HTML网页"></a>解析HTML网页</h2><p>   米开朗基罗被问及如何完成《大卫》这样匠心独具的雕刻作品时，他有一段著名的回答：“很简单，你只要用锤子把石头<br>上不像大卫的地方敲掉就行了。”<br>   解析HTML网页也是相似的工作，我们要获取的数据一般都隐藏在复杂的HTML源码里，敲掉不需要的数据，目标数据就出来了。</p>
-<h3 id="一个html"><a href="#一个html" class="headerlink" title="一个html"></a>一个html</h3><pre><code class="s">&lt;div class=&quot;top-nav-doubanapp&quot;&gt;
-  &lt;a href=&quot;https://www.douban.com/doubanapp/app?channel=top-nav&quot; class=&quot;lnk-doubanapp&quot;&gt;下载豆瓣客户端&lt;/a&gt;
-  &lt;div id=&quot;top-nav-appintro&quot; class=&quot;more-items&quot;&gt;
-    &lt;p class=&quot;appintro-title&quot;&gt;豆瓣&lt;/p&gt;
-    &lt;p class=&quot;slogan&quot;&gt;我们的精神角落&lt;/p&gt;
-    &lt;p class=&quot;qrcode&quot;&gt;扫码直接下载&lt;/p&gt;
-    &lt;div class=&quot;download&quot;&gt;
-      &lt;a href=&quot;https://www.douban.com/doubanapp/redirect?channel=top-nav&amp;direct_dl=1&amp;download=iOS&quot;&gt;iPhone&lt;/a&gt;
-      &lt;span&gt;·&lt;/span&gt;
-      &lt;a href=&quot;https://www.douban.com/doubanapp/redirect?channel=top-nav&amp;direct_dl=1&amp;download=Android&quot; class=&quot;download-android&quot;&gt;Android&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;div id=&quot;doubanapp-tip&quot;&gt;
-      &lt;a href=&quot;https://www.douban.com/doubanapp/app?channel=qipao&quot; class=&quot;tip-link&quot;&gt;豆瓣 5.0 全新发布&lt;/a&gt;
-      &lt;a href=&quot;javascript: void 0;&quot; class=&quot;tip-close&quot;&gt;×&lt;/a&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+<h3 id="一个html"><a href="#一个html" class="headerlink" title="一个html"></a>一个html</h3><pre><code class="s">&lt;dl&gt;
+    &lt;dt&gt;
+      &lt;a href=&quot;https://movie.douban.com/subject/20495023/?from=tag_all&quot; target=&quot;_blank&quot;&gt;
+        &lt;img src=&quot;https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2503997609.webp&quot; /&gt;
+      &lt;/a&gt;
+    &lt;/dt&gt;
+    &lt;dd&gt;
+      &lt;a href=&quot;https://movie.douban.com/subject/20495023/?from=tag_all&quot; class=&quot;title&quot; target=&quot;_blank&quot;&gt;寻梦环游记 Coco&lt;/a&gt;
+
+
+      &lt;div class=&quot;desc&quot;&gt;
+        美国 / 喜剧 / 动画 / 冒险 / 音乐 / 家庭 / 2017 / 李·昂克里奇 / 安东尼·冈萨雷斯 / 盖尔·加西亚·贝纳尔 / 本杰明·布拉特
+      &lt;/div&gt;
+
+        &lt;div class=&quot;rating&quot;&gt;
+          &lt;span class=&quot;allstar45&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;rating_nums&quot;&gt;9.2&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/dd&gt;
+  &lt;/dl&gt;
 </code></pre>
 <h2 id="采集过程-获取子页面"><a href="#采集过程-获取子页面" class="headerlink" title="采集过程-获取子页面"></a>采集过程-获取子页面</h2><h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><h2 id="储存数据"><a href="#储存数据" class="headerlink" title="储存数据"></a>储存数据</h2><h2 id="模拟登陆"><a href="#模拟登陆" class="headerlink" title="模拟登陆"></a>模拟登陆</h2><h2 id="避开反爬虫"><a href="#避开反爬虫" class="headerlink" title="避开反爬虫"></a>避开反爬虫</h2><h2 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h2><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
       
@@ -459,7 +462,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+                <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -467,7 +470,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
              
               <li class="article-tag-list-item">
