@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="挖出一片天">
 <meta property="og:description" content="goole深度学习框架前言我在这之前并没有接触过tensorflow，不过我深感时间太少，还是督促自己早点把TensorFlow的学习提上日程，努力进步。 准备工具python环境下安装如果下载了anaconda,tensorflow的安装就很方便了，在CMD环境下输入下面的代码就能搞定了1pip install tensorflow 使用这种方法下载的是CPU版本，tensorflow还有一个G">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/hanxufeng.github.io/master/img/tensor-rumen/tensorflow%20for%20R.png">
-<meta property="og:updated_time" content="2017-12-15T12:12:00.360Z">
+<meta property="og:updated_time" content="2017-12-22T02:50:43.010Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow入门">
 <meta name="twitter:description" content="goole深度学习框架前言我在这之前并没有接触过tensorflow，不过我深感时间太少，还是督促自己早点把TensorFlow的学习提上日程，努力进步。 准备工具python环境下安装如果下载了anaconda,tensorflow的安装就很方便了，在CMD环境下输入下面的代码就能搞定了1pip install tensorflow 使用这种方法下载的是CPU版本，tensorflow还有一个G">
@@ -178,10 +178,12 @@
       
         <h2 id="goole深度学习框架"><a href="#goole深度学习框架" class="headerlink" title="goole深度学习框架"></a>goole深度学习框架</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>我在这之前并没有接触过tensorflow，不过我深感时间太少，还是督促自己早点把TensorFlow的学习提上日程，努力进步。</p>
 <h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><h3 id="python环境下安装"><a href="#python环境下安装" class="headerlink" title="python环境下安装"></a>python环境下安装</h3><p>如果下载了anaconda,tensorflow的安装就很方便了，在CMD环境下输入下面的代码就能搞定了<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install tensorflow</span><br></pre></td></tr></table></figure></p>
-<p>使用这种方法下载的是CPU版本，tensorflow还有一个GPU版本，安装起来会更复杂，GPU版本tensorflow的代码可以并行运行。</p>
+<p>使用这种方法下载的是CPU版本，tensorflow还有一个GPU版本，安装起来会更复杂，GPU版本tensorflow支持并行运算。</p>
 <h3 id="R环境下的安装"><a href="#R环境下的安装" class="headerlink" title="R环境下的安装"></a>R环境下的安装</h3><p><a href="https://tensorflow.rstudio.com/" target="_blank" rel="noopener">TensorFlow for R</a><br><a href="https://tensorflow.rstudio.com/" target="_blank" rel="noopener">github介绍</a><br>从下图可以看到，R是通过python的环境运行的tensorflow，还是得先安装好python和anaconda。调用Python的接口的确是个好方法，很有开源社区资源共享的特色。<br><img src="https://raw.githubusercontent.com/XufengHan/hanxufeng.github.io/master/img/tensor-rumen/tensorflow%20for%20R.png" alt="pic1"><br>下面的tensorflow我还是会用python运行，主要是因为我对R的环境和操作已经比较熟悉了，而python需要更多练习，不过我也会补充一下R的案例。</p>
 <h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://github.com/BinRoot/TensorFlow-Book" target="_blank" rel="noopener">参考链接</a> -<br>  我还是会在网上找一些参考文档，毕竟工作的时候捧着一本书看太张扬。<br><a href="http://wiki.jikexueyuan.com/project/tensorflow-zh/" target="_blank" rel="noopener">官方文档中文版</a> -<br>  开源框架这种东西，还是得对着官方文档一步一步来。<br><a href="http://playground.tensorflow.org/" target="_blank" rel="noopener">tensorflow游乐场</a>-<br>  名字怪怪的，事实上它是tensorflow的一款可视化开发工具。</p>
-<h2 id="tensorflow对象"><a href="#tensorflow对象" class="headerlink" title="tensorflow对象"></a>tensorflow对象</h2><p>使用 TensorFlow, 我们需要明白 TensorFlow:<br>  • 使用 tensor 表示数据.<br>  • 在被称之为 会话 (Session) 的上下文 (context) 中执行图.<br>  • 通过 变量 (Variable) 维护状态<br>  • 使用图 (graph) 来表示计算任务..<br>  • 使用 feed 和 fetch 可以为任意的操作(arbitrary operation) 赋值或者从其中获取数据.</p>
+<h2 id="tensorflow对象"><a href="#tensorflow对象" class="headerlink" title="tensorflow对象"></a>tensorflow对象</h2><p>使用 TensorFlow, 我们需要明白 TensorFlow:<br>  • 使用 tensor 表示数据.<br>  • 在被称之为 会话 (Session) 的上下文 (context) 中执行图.<br>  • 通过 变量 (Variable) 维护状态<br>  • 使用图 (graph) 来表示计算任务<br>  • 使用 feed 和 fetch 可以为任意的操作(arbitrary operation) 赋值或者从其中获取数据.</p>
+<h3 id="创建一个tensor"><a href="#创建一个tensor" class="headerlink" title="创建一个tensor"></a>创建一个tensor</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=tf.constant([<span class="number">1.0</span>,<span class="number">2.0</span>],name=<span class="string">"a"</span>)</span><br><span class="line">b=tf.constant([<span class="number">2.0</span>],name=<span class="string">"b"</span>)</span><br><span class="line">result=a+b</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个会话"><a href="#创建一个会话" class="headerlink" title="创建一个会话"></a>创建一个会话</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>不急不急，我还在怼案例。</p>
 
       
@@ -447,11 +449,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
             
             <div class="clearfix"></div>
