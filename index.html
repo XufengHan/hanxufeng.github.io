@@ -349,7 +349,7 @@
 <p>可能在这里有人要问，为什么不直接提取这个页面呢？原因就是，在采集网站的过程过程中，大多都要遵循一些步骤，要按照一个节点到另一个节点的顺序来，大概就像树的根-&gt;枝-&gt;叶这个过程。</p>
 <h3 id="网页翻页"><a href="#网页翻页" class="headerlink" title="网页翻页"></a>网页翻页</h3><p>在我们兴高采烈的准备开始网站采集过程的时候，发现豆瓣里2017年的电影好像有20页（好了，我知道前20页有几部不是2017年的，原因问豆瓣去，我不知道），这个问题还没有处理呢，用刚才提取超链接的方法好像不行，网页源码里好像没有下一页的地址。<br>其实这个问题很容易解决，大家看看第一页，第二页，和第三页的网址，发现了什么没？每翻一页start=后面的数字就加了15，而我们每一页正好15部电影，没错这个start参数的意思就是从第几部电影开始，?是参数的连接符。我们以后就会了解到，这其实就是一个post操作。（不是我要用英文装逼，是没有看到什么好的翻译，用英文形象多了）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">https://www.douban.com/tag/2017/movie  #第一页</span><br><span class="line">https://www.douban.com/tag/2017/movie?start=15 #第二页</span><br><span class="line">https://www.douban.com/tag/2017/movie?start=30 #第三页</span><br></pre></td></tr></table></figure></p>
 <h2 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h2><p>为什么要数据清洗？比如大家执行一下下面的代码去得到第一部电影的标签，你会发现什么鬼，为什么结果还有斜杠杠，那我怎么分词，怎么统计词频，怎么查看电影的关联性，怎么做主题模型呢！<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">nameList = douban.findAll(<span class="string">"div"</span>, &#123;<span class="string">"class"</span>:<span class="string">"desc"</span>&#125;)</span><br><span class="line">print(nameList[<span class="number">1</span>].get_text())</span><br><span class="line"></span><br><span class="line"><span class="comment">#英国 / 剧情 / 传记 / 动画 / 2017 / 多洛塔·科别拉 / 道格拉斯·布斯 / 杰罗姆·弗林 / 罗伯特·古拉奇克</span></span><br></pre></td></tr></table></figure></p>
-<p>在你一筹莫展之际，其实你应该庆幸，这其实是最理想的结果，因为从上图来看，网页是上的数据的确是这个样式，我们的结果还没有出现偏差。<br>对了，不要指望我会什么做分词，统计词频，计算相关性，建立主题模型，豆瓣的数据拉下来后我到现在都不知道去做些什么。</p>
+<p>在你一筹莫展之际，其实你应该庆幸，这其实是最理想的结果，因为从上图来看，网页是上的数据的确是这个样式，我们的结果还没有出现偏差。<br>对了，不要指望我会什么做分词，统计词频，计算相关性，建立主题模型，豆瓣的数据拉下来后我还没有想到什么好的分析内容。</p>
 <h3 id="用字符处理函数清洗"><a href="#用字符处理函数清洗" class="headerlink" title="用字符处理函数清洗"></a>用字符处理函数清洗</h3><p>这里我就使用了一个split，就和他的单词含义一样，split就是将字符串按照” / “拆分，结果返回一个列表。<br>python自带的字符处理方法大概还有，替换，删除，截取，复制，连接，查找这些逻辑方法，把字符拆分组装成不同的形式。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name=nameList[<span class="number">1</span>].get_text().split(<span class="string">" / "</span>)</span><br><span class="line">print(name)</span><br><span class="line"><span class="comment">#['英国', '剧情', '传记', '动画', '2017', '多洛塔·科别拉', '道格拉斯·布斯', '杰罗姆·弗林', '罗伯特·古拉奇克']</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="用正则清洗"><a href="#用正则清洗" class="headerlink" title="用正则清洗"></a>用正则清洗</h3><p><a href="http://www.runoob.com/regexp/regexp-syntax.html" target="_blank" rel="noopener">正则表达式资料</a><br><a href="http://tool.oschina.net/regex/" target="_blank" rel="noopener">在线正则表达式测试</a></p>
 <p>如果某个问题要用到正则，实际上它就成了俩个问题。看看下面的python代码，你可能觉得不就是用了个替换，把” / “换成了空白吗？正则表达式就是定义这些匹配规则的。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name=nameList[<span class="number">1</span>].get_text()</span><br><span class="line">print(name.replace(<span class="string">" / "</span>,<span class="string">" "</span>))</span><br><span class="line"><span class="comment">#英国 剧情 传记 动画 2017 多洛塔·科别拉 道格拉斯·布斯 杰罗姆·弗林 罗伯特·古拉奇克</span></span><br></pre></td></tr></table></figure></p>
@@ -367,7 +367,7 @@
 <h4 id="查看登陆状态"><a href="#查看登陆状态" class="headerlink" title="查看登陆状态"></a>查看登陆状态</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isLogin</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    通过查看用户个人账户信息来判断是否已经登录</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    url = <span class="string">"https://www.douban.com/accounts/"</span></span><br><span class="line">    login_code = session.get(url, headers=headers,</span><br><span class="line">                             allow_redirects=<span class="keyword">False</span>).status_code</span><br><span class="line">    <span class="keyword">if</span> login_code == <span class="number">200</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">isLogin()</span><br><span class="line"><span class="comment">#True</span></span><br></pre></td></tr></table></figure>
 <p>还是用大招吧，虽然之前已经打印了热门内容了，用这个方法可以直接重个人信息里查看是否登陆成功。</p>
 <h2 id="避开反爬虫"><a href="#避开反爬虫" class="headerlink" title="避开反爬虫"></a>避开反爬虫</h2><p>防止自己被反爬虫识别的要领就是让我们的采集行为看起来像一个机器人。</p>
-<h2 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h2><p>可能有人有疑惑，上面不是已经有了处理验证码的方案了吗，为什么还要去做自动识别呢？因为我们头铁，怎么会满足这么笨重的方式。<br>这里我打算做两个关于图像识别的模型，主要基于下面两个方法。<br>-<a href="http://www.hanxufeng.club/2017/12/27/billow-pic/" target="_blank" rel="noopener">pillow识别验证码</a><br>-<a href="http://www.hanxufeng.club/2017/11/29/python-pc%20/" target="_blank" rel="noopener">tensorflow识别验证码</a><br>当然了，验证码不一定都是文字和数字的组合，现在很流行的滑动验证码我也看到过破解方式，是调用JS脚本的方法。至于规则更为复杂的验证码比如下面这样的，我也不太有办法了。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/nmcx.jpg" alt="pic1"></p>
+<h2 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h2><p>可能有人有疑惑，上面不是已经有了处理验证码的方案了吗，为什么还要去做自动识别呢？因为我们头铁，怎么会满足这么笨重的方式。<br>这里我打算做两个关于图像识别的模型，主要基于下面两个方法。<br>-<a href="http://www.hanxufeng.club/2017/12/27/billow-pic/" target="_blank" rel="noopener">pillow识别验证码</a><br>-<a href="http://www.hanxufeng.club/2017/12/11/tensorflow-rumen/" target="_blank" rel="noopener">tensorflow识别验证码</a><br>当然了，验证码不一定都是文字和数字的组合，现在很流行的滑动验证码我也看到过破解方式，是调用JS脚本的方法。至于规则更为复杂的验证码比如下面这样的，我也不太有办法了。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/nmcx.jpg" alt="pic1"></p>
 <h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
       
 
@@ -854,6 +854,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
@@ -862,15 +866,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
