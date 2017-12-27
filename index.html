@@ -151,71 +151,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-billow-pic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/27/billow-pic/">billow识别验证码</a>
-    </h1>
-  
-
-        
-        <a href="/2017/12/27/billow-pic/" class="archive-article-date">
-  	<time datetime="2017-12-27T00:39:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-27</time>
-</a>
-        
-      </header>
-	  <!-- 目录内容 -->
-             
-        <!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/27/billow-pic/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-tensorflow-rumen" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -356,7 +291,9 @@
 <h4 id="查看登陆状态"><a href="#查看登陆状态" class="headerlink" title="查看登陆状态"></a>查看登陆状态</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isLogin</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    通过查看用户个人账户信息来判断是否已经登录</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    url = <span class="string">"https://www.douban.com/accounts/"</span></span><br><span class="line">    login_code = session.get(url, headers=headers,</span><br><span class="line">                             allow_redirects=<span class="keyword">False</span>).status_code</span><br><span class="line">    <span class="keyword">if</span> login_code == <span class="number">200</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">isLogin()</span><br><span class="line"><span class="comment">#True</span></span><br></pre></td></tr></table></figure>
 <p>还是用大招吧，虽然之前已经打印了热门内容了，用这个方法可以直接重个人信息里查看是否登陆成功。</p>
 <h2 id="避开反爬虫"><a href="#避开反爬虫" class="headerlink" title="避开反爬虫"></a>避开反爬虫</h2><p>防止自己被反爬虫识别的要领就是让我们的采集行为看起来像一个机器人。</p>
-<h2 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h2><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+<h2 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h2><p>这里我打算做两个关于图像识别的模型，主要基于下面两个方法</p>
+<p><a href="http://www.hanxufeng.club/2017/12/27/pillow-pic/" target="_blank" rel="noopener">pillow识别验证码</a><br><a href="http://www.hanxufeng.club/2017/11/29/python-pc%20/" target="_blank" rel="noopener">tensorflow识别验证码</a></p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
       
 
       
@@ -842,15 +779,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -858,7 +795,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+                <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
               </li>
             
             <div class="clearfix"></div>
