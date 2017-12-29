@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/hanxufeng.github.io/master/img/pachong/douban_movies.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/hanxufeng.github.io/master/img/pachong/page.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/nmcx.jpg">
-<meta property="og:updated_time" content="2017-12-29T06:33:10.404Z">
+<meta property="og:updated_time" content="2017-12-29T08:02:24.716Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python爬虫">
 <meta name="twitter:description" content="使用工具anaconda-python3.6安装完成并配置好环境之后，我们就可以使用python了，anaconda里包含了许多常见的python工具。 解析HTML网页   米开朗基罗被问及如何完成《大卫》这样匠心独具的雕刻作品时，他有一段著名的回答：“很简单，你只要用锤子把石头上不像大卫的地方敲掉就行了。”   解析HTML网页也是相似的工作，我们要获取的数据一般都隐藏在复杂的HTML源码里，">
@@ -237,7 +237,42 @@
 <h4 id="查看登陆状态"><a href="#查看登陆状态" class="headerlink" title="查看登陆状态"></a>查看登陆状态</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">isLogin</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    通过查看用户个人账户信息来判断是否已经登录</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    url = <span class="string">"https://www.douban.com/accounts/"</span></span><br><span class="line">    login_code = session.get(url, headers=headers,</span><br><span class="line">                             allow_redirects=<span class="keyword">False</span>).status_code</span><br><span class="line">    <span class="keyword">if</span> login_code == <span class="number">200</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">isLogin()</span><br><span class="line"><span class="comment">#True</span></span><br></pre></td></tr></table></figure>
 <p>还是用大招吧，虽然之前已经打印了热门内容了，用这个方法可以直接重个人信息里查看是否登陆成功。</p>
 <h2 id="避开反爬虫"><a href="#避开反爬虫" class="headerlink" title="避开反爬虫"></a>避开反爬虫</h2><p>防止自己被反爬虫识别的要领就是让我们的采集行为看起来像一个机器人,下面介绍我常用的两个小操作。</p>
-<h3 id="设置标头-header"><a href="#设置标头-header" class="headerlink" title="设置标头-header"></a>设置标头-header</h3><p>首先看一看上面我们登陆豆瓣的请求信息<br>|  属性          | 内容         |<br>| ————- |:————-:|<br>|Host|www.douban.com|<br>|Referer|    <a href="https://www.douban.com/|" target="_blank" rel="noopener">https://www.douban.com/|</a><br>|User–Agent| Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0|<br>|Accept| text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8|<br>|Accept–Language|  zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3|<br>|Accept–Encoding | gzip, deflate, br|<br>再看看用python的urllib库访问网站的时候，发送的请求信息。怎么样，是不是把“我是机器人”这几个大字写在脸上了，再简陋额反扒机制也能轻轻松松认出你。<br>|  属性          | 内容         |<br>| ————- |:————-:|<br>|Accept-Encoding |identity|<br>|User-Agent|Python-urllib/3.6|</p>
+<h3 id="设置标头-header"><a href="#设置标头-header" class="headerlink" title="设置标头-header"></a>设置标头-header</h3><p>首先看一看上面我们登陆豆瓣的请求信息</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th style="text-align:center">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Host</td>
+<td style="text-align:center">www.douban.com</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td style="text-align:center"><a href="https://www.douban.com/" target="_blank" rel="noopener">https://www.douban.com/</a></td>
+</tr>
+<tr>
+<td>User–Agent</td>
+<td style="text-align:center">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td style="text-align:center">text/html,application/xhtml+xml,application/xml;q=0.9,<em>/</em>;q=0.8</td>
+</tr>
+<tr>
+<td>Accept–Language</td>
+<td style="text-align:center">zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</td>
+</tr>
+<tr>
+<td>Accept–Encoding</td>
+<td style="text-align:center">gzip, deflate, br</td>
+</tr>
+</tbody>
+</table>
+<p>再看看用python的urllib库访问网站的时候，发送的请求信息。怎么样，是不是把“我是机器人”这几个大字写在脸上了，再简陋额反扒机制也能轻轻松松认出你。<br>|  属性          | 内容         |<br>| ————- |:————-:|<br>| Accept-Encoding | identity|<br>| User-Agent| Python-urllib/3.6|</p>
 <p>浏览器的访问信息可以在浏览器里用F12打开开发者工具在下图的位置查看，关键的内容是User-Agent部分，不要有一个可疑的身份。<br><a href="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/header.png" target="_blank" rel="noopener">pic10</a></p>
 <h3 id="执行间隔"><a href="#执行间隔" class="headerlink" title="执行间隔"></a>执行间隔</h3><p>除了身份要伪造以外，行为也要伪装，</p>
 <h2 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h2><p>可能有人有疑惑，上面不是已经有了处理验证码的方案了吗，为什么还要去做自动识别呢？因为我们头铁，怎么会满足这么笨重的方式。<br>这里我打算做两个关于图像识别的模型，主要基于下面两个方法。<br>-<a href="http://www.hanxufeng.club/2017/12/27/pillow-pic/" target="_blank" rel="noopener">pillow识别验证码</a><br>-<a href="http://www.hanxufeng.club/2017/12/11/tensorflow-rumen/" target="_blank" rel="noopener">tensorflow识别验证码</a><br>当然了，验证码不一定都是文字和数字的组合，现在很流行的滑动验证码我也看到过破解方式，是调用JS脚本做的。至于规则更为复杂的验证码比如下面这样的，我也不太有办法了。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/nmcx.jpg" alt="pic1"></p>
@@ -515,19 +550,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,6 +567,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
               </li>
             
             <div class="clearfix"></div>
