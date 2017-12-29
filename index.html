@@ -422,9 +422,10 @@
 </tbody>
 </table>
 <p>浏览器的访问信息可以在浏览器里用F12打开开发者工具在下图的位置查看，关键的内容是User-Agent部分，不要有一个可疑的身份。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/header1.png" alt="pic10"></p>
-<h3 id="执行间隔"><a href="#执行间隔" class="headerlink" title="执行间隔"></a>执行间隔</h3><p>除了身份要伪造以外，行为也要伪装，你的访问速度比别人快很多不光会显得很异常，而且会给对方的服务器造成沉重的负担，解决方案就是为每一次访问增加一些时间间隔，用time.sleep()函数，就能完成，下面有一个使用实例。</p>
+<h3 id="执行间隔"><a href="#执行间隔" class="headerlink" title="执行间隔"></a>执行间隔</h3><p>除了身份要伪造以外，行为也要伪装，你的访问速度比别人快很多不光会显得很异常，而且会给对方的服务器造成沉重的负担，解决方案就是为每一次访问增加一些时间间隔，用time.sleep()函数，就能完成，下面有一个使用实例。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.request <span class="keyword">import</span> urlopen</span><br><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> random <span class="keyword">as</span> rd</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line">url=<span class="string">"https://www.douban.com/tag/2017/movie?start="</span></span><br><span class="line"></span><br><span class="line">movies=[]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">20</span>):</span><br><span class="line">  time.sleep(rd.uniform(<span class="number">5</span>, <span class="number">10</span>))<span class="comment"># 随机休眠5到10秒  </span></span><br><span class="line">  url=<span class="string">"https://www.douban.com/tag/2017/movie?start="</span></span><br><span class="line">  url1=url+<span class="string">"15*i"</span></span><br><span class="line">  html = urlopen(url1)</span><br><span class="line">  douban = BeautifulSoup(html,<span class="string">"lxml"</span>)</span><br><span class="line">  nameList = douban.findAll(<span class="string">"a"</span>, &#123;<span class="string">"class"</span>:<span class="string">"title"</span>&#125;)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,<span class="number">15</span>):</span><br><span class="line">    nameList[i]=nameList[i].get_text()</span><br><span class="line">  movies=movies+nameList <span class="comment">#储存数据</span></span><br></pre></td></tr></table></figure></p>
+<p>这几行代码用了一个循环，把豆瓣电影前20页的电影名称拉下来了，并且每一次翻页都暂停了5到10秒。<br>避免反爬虫的方法就暂时介绍到这里，当然爬虫者和反爬者还有很多勾心斗角的斗争，比如围绕着cookie和IP地址的，但是这些在我的能力之外了，不过我的方案有着绝对的性价比，够解决我们遇到的大多数问题了。</p>
 <h2 id="验证码识别"><a href="#验证码识别" class="headerlink" title="验证码识别"></a>验证码识别</h2><p>可能有人有疑惑，上面不是已经有了处理验证码的方案了吗，为什么还要去做自动识别呢？因为我们头铁，怎么会满足这么笨重的方式。<br>这里我打算做两个关于图像识别的模型，主要基于下面两个方法。<br>-<a href="http://www.hanxufeng.club/2017/12/27/pillow-pic/" target="_blank" rel="noopener">pillow识别验证码</a><br>-<a href="http://www.hanxufeng.club/2017/12/11/tensorflow-rumen/" target="_blank" rel="noopener">tensorflow识别验证码</a><br>当然了，验证码不一定都是文字和数字的组合，现在很流行的滑动验证码我也看到过破解方式，是调用JS脚本做的。至于规则更为复杂的验证码比如下面这样的，我也不太有办法了。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/nmcx.jpg" alt="pic1"></p>
-<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2>
+
       
 
       
@@ -910,11 +911,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -926,11 +927,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
             
             <div class="clearfix"></div>
