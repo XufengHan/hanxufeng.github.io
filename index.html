@@ -158,7 +158,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/02/goverment-report/">国务院工作报告分析</a>
+      <a class="article-title" href="/2018/01/02/goverment-report/">数据角度看政府精神世界变迁</a>
     </h1>
   
 
@@ -176,8 +176,12 @@
       
         <p>突然来了一个紧急任务，我的毕业论文要开始写了，我打算把这个小项目改写成毕业论文，两个图像识别的模型先放一放。</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>政府工作报告<a href="https://pan.baidu.com/s/1hs0CpgC" target="_blank" rel="noopener">百度网盘地址</a> 密码:i667</p>
-<h3 id="代码说明"><a href="#代码说明" class="headerlink" title="代码说明"></a>代码说明</h3><p>为了我的毕业论文的保密性，此项目的代码我暂时不挂出来，我尝试着把它写成一个像论文的东东。</p>
-<h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><h2 id="批量读取文件"><a href="#批量读取文件" class="headerlink" title="批量读取文件"></a>批量读取文件</h2><h2 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h2>
+<h3 id="数据说明"><a href="#数据说明" class="headerlink" title="数据说明"></a>数据说明</h3><p>自新中国成立以来，国务院并非每年都发布政府工作汇报。从1950年开始，应该每年都有一次政<br>府工作汇报，但是1953年之前，政府处于初创，百废待兴，更重要的是人民代表大会还没有成立，政府结构和程序还处于摸索阶段，<br>所以这段时间政府并没有成型的工作汇报文本。另外1961-1963年国家经历的所谓的三年自然灾害，政府工作会议因此无法正常举行，<br>1965-1977年，国务院仅在1975年由国务院总理周恩来发布过一次工作汇报，这一阶段一共发生了十年动乱的文革，76年和77年毛周朱<br>相继去世，政府工作处于非正常时期，因此也没进行政府工作汇报。</p>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###载入数据包</span></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"Rwordseg"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"Rwordseg"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"Rwordseg"</span>)</span><br><span class="line">&#125;<span class="comment">#Rwordseg安装需要配置java，可参考文件夹中的配置文档</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"rJava"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"rJava"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"rJava"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"tm"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"tm"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"tm"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"slam"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"slam"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"slam"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"topicmodels"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"topicmodels"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"topicmodels"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"wordcloud"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"wordcloud"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"wordcloud"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"igraph"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"igraph"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"igraph"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"plyr"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"plyr"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"plyr"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"reshape2"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"reshape2"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"reshape2"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"ggplot2"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"ggplot2"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"ggplot2"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"ggdendro"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"ggdendro"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"ggdendro"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!suppressWarnings(<span class="keyword">require</span>(<span class="string">"grid"</span>))) &#123;</span><br><span class="line">  install.packages(<span class="string">"grid"</span>)</span><br><span class="line">  <span class="keyword">require</span>(<span class="string">"grid"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="主题模型确定精神变迁话题线"><a href="#主题模型确定精神变迁话题线" class="headerlink" title="主题模型确定精神变迁话题线"></a>主题模型确定精神变迁话题线</h2><h3 id="选择统计量"><a href="#选择统计量" class="headerlink" title="选择统计量"></a>选择统计量</h3><p>主题模型主要以以下三个统计量为基础来进行统计和建模过程，词频（TF）</p>
+<h4 id="TF"><a href="#TF" class="headerlink" title="TF"></a>TF</h4><p>TF 是英语单词 Term Frequency的缩写，用中文可以表达为词频，和字面上的意思一样，这个统计量的作用就统计每个词在文档中出现的频率。<br>数学公式为：</p>
+<h4 id="IDF"><a href="#IDF" class="headerlink" title="IDF"></a>IDF</h4><p>IDF既 Inverse Document Frequency，中文翻译为逆文档频率，概括来讲， IDF反应了一个词在所有文本中出现的频率，如果一个词在很多的文本中出现，那么它的IDF值应该低。<br>比如在两会的开始，主讲人经常会说“各位代表”这样的敬语，那“各位代表”这个词在语料库中的IDF就非常低。</p>
+<h4 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h4><h3 id="主题模型简介"><a href="#主题模型简介" class="headerlink" title="主题模型简介"></a>主题模型简介</h3><h3 id="参数估计"><a href="#参数估计" class="headerlink" title="参数估计"></a>参数估计</h3><h4 id="Gibbs抽样"><a href="#Gibbs抽样" class="headerlink" title="Gibbs抽样"></a>Gibbs抽样</h4><h4 id="确定主题数"><a href="#确定主题数" class="headerlink" title="确定主题数"></a>确定主题数</h4><h2 id="用层次聚类分析政府报告相似度"><a href="#用层次聚类分析政府报告相似度" class="headerlink" title="用层次聚类分析政府报告相似度"></a>用层次聚类分析政府报告相似度</h2><h3 id="聚类分析方法概论"><a href="#聚类分析方法概论" class="headerlink" title="聚类分析方法概论"></a>聚类分析方法概论</h3><h3 id="数据预处理-选择变量"><a href="#数据预处理-选择变量" class="headerlink" title="数据预处理-选择变量"></a>数据预处理-选择变量</h3><h3 id="文章之间的距离计算方法"><a href="#文章之间的距离计算方法" class="headerlink" title="文章之间的距离计算方法"></a>文章之间的距离计算方法</h3><h3 id="确定聚类数量"><a href="#确定聚类数量" class="headerlink" title="确定聚类数量"></a>确定聚类数量</h3><h2 id="政府各个时期精神面貌关键词展示"><a href="#政府各个时期精神面貌关键词展示" class="headerlink" title="政府各个时期精神面貌关键词展示"></a>政府各个时期精神面貌关键词展示</h2><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
       
 
       
@@ -990,15 +994,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">R语言 文本挖掘 政府工作报告</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1006,15 +1006,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
             
             <div class="clearfix"></div>
