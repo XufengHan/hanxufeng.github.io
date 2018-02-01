@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>TM包文本聚类 | 挖出一片天</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw">
+  <meta name="description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw 说明数据处理步骤批量读取数据下面构造了一个批量读取数据的函数，大概的的过程就是构造一个读取数据的函数，找出文件下所有目录的文件，用sapply这样的向量函数批量执行读取过程。1234567891011121314get.msg &amp;lt;- functio">
 <meta name="keywords" content="R语言 文本聚类 tm包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TM包文本聚类">
 <meta property="og:url" content="http://yoursite.com/2018/01/29/tm-R/index.html">
 <meta property="og:site_name" content="挖出一片天">
-<meta property="og:description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw">
-<meta property="og:updated_time" content="2018-01-31T11:34:46.382Z">
+<meta property="og:description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw 说明数据处理步骤批量读取数据下面构造了一个批量读取数据的函数，大概的的过程就是构造一个读取数据的函数，找出文件下所有目录的文件，用sapply这样的向量函数批量执行读取过程。1234567891011121314get.msg &amp;lt;- function(path) &amp;#123;  con &amp;lt;- file(path, open =">
+<meta property="og:updated_time" content="2018-02-01T03:58:49.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TM包文本聚类">
-<meta name="twitter:description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw">
+<meta name="twitter:description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw 说明数据处理步骤批量读取数据下面构造了一个批量读取数据的函数，大概的的过程就是构造一个读取数据的函数，找出文件下所有目录的文件，用sapply这样的向量函数批量执行读取过程。1234567891011121314get.msg &amp;lt;- function(path) &amp;#123;  con &amp;lt;- file(path, open =">
   
     <link rel="alternative" href="/atom.xml" title="挖出一片天" type="application/atom+xml">
   
@@ -180,7 +180,7 @@
             <div id="toc-article" class="toc-article">
                 <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
                 <strong class="toc-title">文章目录</strong>
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取数据"><span class="toc-number">1.1.</span> <span class="toc-text">获取数据</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取数据"><span class="toc-number">1.1.</span> <span class="toc-text">获取数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据处理步骤"><span class="toc-number">3.</span> <span class="toc-text">数据处理步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#批量读取数据"><span class="toc-number">3.1.</span> <span class="toc-text">批量读取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据清洗"><span class="toc-number">3.2.</span> <span class="toc-text">数据清洗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中文分词"><span class="toc-number">3.3.</span> <span class="toc-text">中文分词</span></a></li></ol></li></ol>
            </div>
            <script type="text/javascript">
             function showToc(){
@@ -202,6 +202,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><p>政府工作报告<a href="https://pan.baidu.com/s/1mkpCU5E" target="_blank" rel="noopener">百度网盘地址</a> 密码:ljpw</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><h2 id="数据处理步骤"><a href="#数据处理步骤" class="headerlink" title="数据处理步骤"></a>数据处理步骤</h2><h3 id="批量读取数据"><a href="#批量读取数据" class="headerlink" title="批量读取数据"></a>批量读取数据</h3><p>下面构造了一个批量读取数据的函数，大概的的过程就是构造一个读取数据的函数，找出文件下所有目录<br>的文件，用sapply这样的向量函数批量执行读取过程。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">get.msg &lt;- <span class="keyword">function</span>(path) &#123;</span><br><span class="line">  con &lt;- file(path, open = <span class="string">"rt"</span>)<span class="comment">#打开文件其他平台下需要注明编码方式</span></span><br><span class="line">  msg &lt;- readLines(con)<span class="comment">#分行读取txt</span></span><br><span class="line">  n &lt;- grep(<span class="string">"各位代表"</span>, msg)<span class="comment">#每次正文都是以各位代表开头</span></span><br><span class="line">  msg &lt;- msg[seq(n[<span class="number">1</span>],length(msg),<span class="number">1</span>)]<span class="comment">#提取相关内容</span></span><br><span class="line">  close(con)<span class="comment">#关闭路径</span></span><br><span class="line">  <span class="keyword">return</span>(paste(msg, collapse=<span class="string">""</span>))<span class="comment">#我们将第一次出现各位代表的行和最后一行连接在一起</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">#上面我们构造了一个读取数据份额函数</span></span><br><span class="line">path = <span class="string">" "</span> <span class="comment">#设定文件路径</span></span><br><span class="line">docs &lt;- dir(path)<span class="comment">#找出路径中的所有文件</span></span><br><span class="line">docs &lt;- docs[which(docs != <span class="string">"cmds"</span>)]<span class="comment">#去除文件中的系统文件</span></span><br><span class="line">msg &lt;- sapply(docs, <span class="keyword">function</span>(p) get.msg(paste(path,p,sep=<span class="string">"/"</span>)))</span><br><span class="line">msg &lt;- as.data.frame(cbind(names(msg), unlist(msg)), stringsAsFactors = <span class="literal">F</span>)<span class="comment">#将读入的数据转化为数据框</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="数据清洗"><a href="#数据清洗" class="headerlink" title="数据清洗"></a>数据清洗</h3><p>下面是处理文本的通用步骤，把每年的工作报告转化数据框，然后清除掉语料库中的垃圾，鼓掌没有含义所以把它<br>去掉，然后清除数字，字母，还有缺失值。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">msg &lt;- as.data.frame(cbind(names(msg), unlist(msg)), stringsAsFactors = <span class="literal">F</span>)<span class="comment">#将读入的数据转化为数据框</span></span><br><span class="line">colnames(msg) &lt;- c(<span class="string">"id"</span>, <span class="string">"Sentence"</span>)<span class="comment">#为数据框的列命名</span></span><br><span class="line">rownames(msg) &lt;- <span class="literal">NULL</span> <span class="comment">#由于行名称太长，这里去掉行名称</span></span><br><span class="line">msg$Sentence &lt;- gsub(<span class="string">" "</span>, <span class="string">""</span>,msg$Sentence)<span class="comment">#将空格符号替换</span></span><br><span class="line">msg$Sentence &lt;- gsub(<span class="string">"（鼓掌）"</span>, <span class="string">""</span>,msg$Sentence)<span class="comment">#将"（鼓掌）"符号替换</span></span><br><span class="line">sentence &lt;- as.vector(msg$Sentence)<span class="comment">#下面都是为了清除文本中的垃圾</span></span><br><span class="line">sentence &lt;- gsub(<span class="string">"[[:digit:]]*"</span>, <span class="string">""</span>, sentence)<span class="comment">#清除数字及字母[a-zA-Z]</span></span><br><span class="line">sentence &lt;- gsub(<span class="string">"[a-zA-Z]"</span>, <span class="string">""</span>, sentence)</span><br><span class="line">sentence &lt;- sentence[!is.na(sentence)]</span><br><span class="line">stopwords &lt;- read.csv(<span class="string">"~~~/stopword_CN.csv"</span>, header = <span class="literal">T</span>, sep = <span class="string">","</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="中文分词"><a href="#中文分词" class="headerlink" title="中文分词"></a>中文分词</h3><p><a href="https://github.com/qinwf/jiebaR" target="_blank" rel="noopener">jiebaR的官方github</a><br>分词是文本挖掘的第一步了，小巧灵动的jieba分词当然是首选，python平台上也也有这个包，以它们的使用方式<br>来看，应该像tensorflow一样，也是调用了某个分词库的API把，从这一点上来看，R和python还真是难兄难弟。</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(jiebaR)</span><br><span class="line">segCN&lt;-worker() <span class="comment">##这不就是启动API的会话么</span></span><br></pre></td></tr></table></figure>
 
       
 
@@ -345,7 +349,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取数据"><span class="toc-number">1.1.</span> <span class="toc-text">获取数据</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#获取数据"><span class="toc-number">1.1.</span> <span class="toc-text">获取数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-number">2.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据处理步骤"><span class="toc-number">3.</span> <span class="toc-text">数据处理步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#批量读取数据"><span class="toc-number">3.1.</span> <span class="toc-text">批量读取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据清洗"><span class="toc-number">3.2.</span> <span class="toc-text">数据清洗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中文分词"><span class="toc-number">3.3.</span> <span class="toc-text">中文分词</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -467,6 +471,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">R语言 话题模型</a>
               </li>
              
@@ -475,11 +487,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,7 +495,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
+                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,11 +503,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
             
             <div class="clearfix"></div>
