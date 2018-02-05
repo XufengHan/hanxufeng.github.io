@@ -15,10 +15,13 @@
 <meta property="og:url" content="http://yoursite.com/2018/01/29/tm-R/index.html">
 <meta property="og:site_name" content="挖出一片天">
 <meta property="og:description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw 说明数据处理步骤批量读取数据下面构造了一个批量读取数据的函数，大概的的过程就是构造一个读取数据的函数，找出文件下所有目录的文件，用sapply这样的向量函数批量执行读取过程。1234567891011121314get.msg &amp;lt;- function(path) &amp;#123;  con &amp;lt;- file(path, open =">
-<meta property="og:updated_time" content="2018-02-05T01:44:41.490Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/TF_FORMULA.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/TF_MAT.png">
+<meta property="og:updated_time" content="2018-02-05T02:08:19.430Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TM包文本聚类">
 <meta name="twitter:description" content="准备工作获取数据政府工作报告百度网盘地址 密码:ljpw 说明数据处理步骤批量读取数据下面构造了一个批量读取数据的函数，大概的的过程就是构造一个读取数据的函数，找出文件下所有目录的文件，用sapply这样的向量函数批量执行读取过程。1234567891011121314get.msg &amp;lt;- function(path) &amp;#123;  con &amp;lt;- file(path, open =">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/TF_FORMULA.png">
   
     <link rel="alternative" href="/atom.xml" title="挖出一片天" type="application/atom+xml">
   
@@ -209,7 +212,9 @@
 <p>分完词我们还要处理数据，第一步去掉了停用词。停用词就是经常出现但是又没有什么含义的词语，比如，吧、了<br>、的，什么的。我也想过把上面的“鼓掌”也放进停词表里一起去掉，但是鼓掌显然不是停词，会影响停词表的下次<br>使用。之后统计了每份报告的词频，并且做成了词频表。</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sgWords &lt;- msgWords[!(msgWords$Term %<span class="keyword">in</span>% stopwords$term),]<span class="comment">#去除停用词</span></span><br><span class="line">msgWords &lt;- msgWords[which(nchar(msgWords$Term) &gt; <span class="number">1</span>),]</span><br><span class="line">msgWords$Term &lt;- gsub(<span class="string">"[\r\n]"</span>, <span class="string">""</span>, msgWords$Term)<span class="comment">#有些词后面有换行符，移除所有的换行符</span></span><br><span class="line">Logic &lt;- rep(<span class="number">1</span>, length(msgWords[,<span class="number">1</span>]))</span><br><span class="line">msgWords &lt;- as.data.frame(cbind(msgWords, Logic), stringsAsFactors = <span class="literal">F</span>)</span><br><span class="line">msgTerm &lt;- dcast(msgWords, Term ~ Docid, value.var = <span class="string">"Logic"</span>)<span class="comment">#制作词频表</span></span><br><span class="line">msgTerm &lt;- melt(msgTerm, id = <span class="number">1</span>)</span><br><span class="line">msgTerm &lt;- msgTerm[which(msgTerm$value &gt; <span class="number">0</span>),]</span><br><span class="line">names(msgTerm) &lt;- c(<span class="string">"Term"</span>, <span class="string">"Docid"</span>, <span class="string">"Freq"</span>)</span><br><span class="line"><span class="keyword">library</span>(dplyr)</span><br><span class="line">msgTerm &lt;- inner_join(msgTerm, msgWords[,<span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line">msgTerm &lt;- unique(msgTerm)</span><br></pre></td></tr></table></figure>
 <h2 id="TM包文本聚类"><a href="#TM包文本聚类" class="headerlink" title="TM包文本聚类"></a>TM包文本聚类</h2><p>在使用聚类观察文章之间的相似性之前，我们先要对相似性进行定义，这里对相似性的定义就是观察文章中的每一<br>个词语以及它出现的次数是否相似。当然了，语言文化博大精深，这种简陋的方法不一定能很好的反应文章的结构<br>，但是我们选取的语料有简洁精炼的特点，作为一个极其严肃场合的发言文稿，它不应该有冗长的内容和复杂的语<br>法。</p>
-<p>对相似度的定量计算方法可以先参考下面的特征词-文档矩阵。这里的特征词是全语料库中出现的特征词，用这个矩<br>阵就可以对比不同文档中每个特征词出现的次数。把矩阵降下维来去稀疏化，避免矩阵里有很多很多的零，然后再<br>做一个标准化处理就可以通过距离来进行聚类了。<br>距离公式： $d_{i_1,i<em>2}=\sqrt{\sum</em>{j=1}^J(TF_{i<em>1,j}-TF</em>{i_2,j})^2}$</p>
+<p>对相似度的定量计算方法可以先参考下面的特征词-文档矩阵。这里的特征词是全语料库中出现的特征词，用这个矩<br>阵就可以对比不同文档中每个特征词出现的次数。把矩阵降下维来去稀疏化，避免矩阵里有很多很多的零，然后再<br>做一个标准化处理就可以通过距离来进行聚类了。<br>距离公式： </p>
+<p><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/TF_FORMULA.png" alt="pic1"></p>
+<p><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/TF_MAT.png" alt="pic2"></p>
 <table>
 <thead>
 <tr>
@@ -505,10 +510,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">政府工作报告 文本分析 自然语言处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
               </li>
              
@@ -517,15 +518,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">政府工作报告 文本分析 自然语言处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
               <li class="article-tag-list-item">
