@@ -184,6 +184,9 @@
 <h2 id="TM包文本聚类"><a href="#TM包文本聚类" class="headerlink" title="TM包文本聚类"></a>TM包文本聚类</h2><p>在使用聚类观察文章之间的相似性之前，我们先要对相似性进行定义，这里对相似性的定义就是观察文章中的每一<br>个词语以及它出现的次数是否相似。当然了，语言文化博大精深，这种简陋的方法不一定能很好的反应文章的结构<br>，但是我们选取的语料有简洁精炼的特点，作为一个极其严肃场合的发言文稿，它不应该有冗长的内容和复杂的语<br>法。</p>
 <p>对相似度的定量计算方法可以先参考下面的特征词-文档矩阵。这里的特征词是全语料库中出现的特征词，用这个矩<br>阵就可以对比不同文档中每个特征词出现的次数。把矩阵降下维来去稀疏化，避免矩阵里有很多很多的零，然后再<br>做一个标准化处理就可以通过距离来进行聚类了。</p>
 <p>距离公式： （不知道为什么不支持latex公式，我只好贴图了）<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/TF_FORMULA.png" alt="pic1"><br>特征词-文档矩阵:<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/TF_MAT.png" alt="pic2"></p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>下面是用TM包进行文本挖掘的代码，从了解这些R包的过程中，我觉得我学到很多的统计思想和方法。这大概就是R和<br>python的区别吧，R的社区主要是统计学家，python更偏向开发工作。<br><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(tm)</span><br><span class="line"><span class="keyword">library</span>(reshape2)</span><br><span class="line"><span class="keyword">library</span>(tidyverse) <span class="comment">##这个包很大，集成了R很多常见的功能</span></span><br><span class="line">x &lt;- msgWords[, <span class="number">1</span>:<span class="number">2</span>]</span><br><span class="line">x &lt;- split(x$Term, x$Docid)<span class="comment">#数据框转化为list</span></span><br><span class="line">system.time(</span><br><span class="line">  wordcorpus &lt;- Corpus(VectorSource(x)) <span class="comment"># 组成语料库格式</span></span><br><span class="line">)</span><br><span class="line">dtm1 &lt;- DocumentTermMatrix(wordcorpus,</span><br><span class="line">                           control = list(</span><br><span class="line">                             wordLengths=c(<span class="number">2</span>, <span class="literal">Inf</span>), <span class="comment"># 限制词长</span></span><br><span class="line">                             bounds = list(global = c(<span class="number">5</span>,<span class="literal">Inf</span>)), <span class="comment">#设置词的最小频率</span></span><br><span class="line">                             removeNumbers = <span class="literal">TRUE</span>,</span><br><span class="line">                             weighting = weightTf,</span><br><span class="line">                             encoding = <span class="string">"UTF-8"</span>))</span><br><span class="line">dtm01 &lt;- weightTfIdf(dtm1)</span><br><span class="line">N = <span class="number">0.5</span></span><br><span class="line">dtm02 &lt;- removeSparseTerms(dtm01, N);dtm02</span><br><span class="line"><span class="comment"># 这里取词频大于中位数的部分。Sparsity指一个矩阵中空的单元格数除以总的单元格数，然后被1减</span></span><br><span class="line">tdm &lt;- as.TermDocumentMatrix(dtm02)</span><br><span class="line">tdm &lt;- weightTfIdf(tdm)</span><br><span class="line">mydata.df &lt;- as.data.frame(as.matrix(tdm))<span class="comment">#转化为数据库</span></span><br><span class="line">mydata.df.scale &lt;- scale(mydata.df)%&gt;%t()<span class="comment"># 数据框标准化</span></span><br><span class="line">rownames(mydata.df.scale)&lt;-unique(msgTerm$Docid)</span><br><span class="line">d1 &lt;- dist(mydata.df.scale, method = <span class="string">"euclidean"</span>)</span><br><span class="line">fit &lt;- hclust(d1, method=<span class="string">"ward"</span>)</span><br></pre></td></tr></table></figure></p>
+<h3 id="聚类结果展示"><a href="#聚类结果展示" class="headerlink" title="聚类结果展示"></a>聚类结果展示</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggdendro)</span><br><span class="line">dendr &lt;- dendro_data(fit, type = <span class="string">"rectangle"</span>) <span class="comment"># 转换为ggplot处理的对象</span></span><br><span class="line">clust &lt;- cutree(fit, k = <span class="number">4</span>) <span class="comment"># 聚四类</span></span><br><span class="line">clust.df &lt;- data.frame(label=names(clust), cluster=factor(clust))</span><br><span class="line"><span class="comment"># dendr[["labels"]] has the labels, merge with clust.df based on label column</span></span><br><span class="line">dendr[[<span class="string">"labels"</span>]] &lt;- merge(dendr[[<span class="string">"labels"</span>]],clust.df, by=<span class="string">"label"</span>)</span><br><span class="line">cols &lt;- c(rgb(red = <span class="number">0</span>, green = <span class="number">130</span>, blue = <span class="number">137</span>, max = <span class="number">255</span>),</span><br><span class="line">          rgb(red = <span class="number">71</span>, green = <span class="number">71</span>, blue = <span class="number">71</span>, max = <span class="number">255</span>),</span><br><span class="line">          rgb(red = <span class="number">61</span>, green = <span class="number">95</span>, blue = <span class="number">241</span>, max = <span class="number">255</span>),</span><br><span class="line">          rgb(red = <span class="number">254</span>, green = <span class="number">67</span>, blue = <span class="number">101</span>, max = <span class="number">255</span>)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">p &lt;- ggplot() +</span><br><span class="line">  geom_segment(data=segment(dendr), aes(x=x, y=y, xend=xend, yend=yend)) +</span><br><span class="line">  geom_text(data=label(dendr), aes(x, y, label=label, hjust=<span class="number">0</span>, color=cluster),</span><br><span class="line">            size=<span class="number">5</span>) +</span><br><span class="line">  scale_colour_manual(values = cols) +</span><br><span class="line">  coord_flip() + scale_y_reverse(expand=c(<span class="number">0.2</span>, <span class="number">0</span>)) +</span><br><span class="line">  title_with_subtitle(<span class="string">"政府工作报告聚类"</span>,<span class="string">"1954-2017政府精神面貌的时代相似性"</span>) +</span><br><span class="line">  ylab(<span class="string">""</span>) +</span><br><span class="line">  theme(axis.line.y=element_blank(),</span><br><span class="line">        axis.ticks.y=element_blank(),</span><br><span class="line">        axis.text.y=element_blank(),</span><br><span class="line">        axis.title.y=element_blank(),</span><br><span class="line">        panel.background=element_rect(fill=rgb(red = <span class="number">242</span>, green = <span class="number">242</span>, blue = <span class="number">242</span>, max = <span class="number">255</span>)),</span><br><span class="line">        plot.background=element_rect(fill=rgb(red = <span class="number">242</span>, green = <span class="number">242</span>, blue = <span class="number">242</span>, max = <span class="number">255</span>)),</span><br><span class="line">        plot.title = element_text(size = rel(<span class="number">2</span>), family = <span class="string">'Times New Roman'</span> , face = <span class="string">'bold'</span>, hjust = <span class="number">0.2</span>, vjust = <span class="number">0.5</span>, colour = <span class="string">'#3B3B3B'</span>),</span><br><span class="line">        panel.grid.major=element_blank(),</span><br><span class="line">        legend.position=<span class="string">"none"</span>)</span><br><span class="line"></span><br><span class="line">png(filename = paste(path, <span class="string">"report—class.png"</span>, sep = <span class="string">'/'</span>),</span><br><span class="line">    width = <span class="number">10</span>, height = <span class="number">10</span>,</span><br><span class="line">    units = <span class="string">"in"</span>, res= <span class="number">700</span>)</span><br><span class="line">print(p)</span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure>
+<p>下面就是分类结果的层次图了，看起来是不是把政府工作的重大时期都分开了。<br>抛开颜色来说，其实这幅图展示的是不同距离下的聚类结果，至于我为什么要分成四类，可以参考我的其它博客。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/report%E2%80%94class.png" alt="class"></p>
 
       
 
@@ -1158,15 +1161,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">R语言 话题模型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1174,7 +1169,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1182,15 +1177,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">python Beautifulsoup requests</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">github blog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">R语言 文本聚类 tm包</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
               </li>
             
             <div class="clearfix"></div>
