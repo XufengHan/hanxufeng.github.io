@@ -17,7 +17,7 @@
 <meta property="og:description" content="goole深度学习框架前言我在这之前并没有接触过tensorflow，不过我深感时间太少，还是督促自己早点把TensorFlow的学习提上日程，努力进步。 准备工具python环境下安装如果下载了anaconda,tensorflow的安装就很方便了，在CMD环境下输入下面的代码就能搞定了1pip install tensorflow 使用这种方法下载的是CPU版本，tensorflow还有一个G">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/hanxufeng.github.io/master/img/tensor-rumen/tensorflow%20for%20R.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/line_near_test.png">
-<meta property="og:updated_time" content="2018-03-22T07:03:34.340Z">
+<meta property="og:updated_time" content="2018-03-22T07:11:50.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="tensorflow入门-识别验证码">
 <meta name="twitter:description" content="goole深度学习框架前言我在这之前并没有接触过tensorflow，不过我深感时间太少，还是督促自己早点把TensorFlow的学习提上日程，努力进步。 准备工具python环境下安装如果下载了anaconda,tensorflow的安装就很方便了，在CMD环境下输入下面的代码就能搞定了1pip install tensorflow 使用这种方法下载的是CPU版本，tensorflow还有一个G">
@@ -214,7 +214,7 @@
 <h2 id="tensorflow训练模型实例"><a href="#tensorflow训练模型实例" class="headerlink" title="tensorflow训练模型实例"></a>tensorflow训练模型实例</h2><p>下面是一个tensoeflow训练一元回归模型的样例，这个简单的案例包含了深度学习模型几个基本的要素。<br>包括：<br>1.学习函数：我们用来拟合数据的函数，这里使用的是y=weight*x+bias来拟合x_data,y_data<br>2.优化函数：下面的方法用的是梯度下降方法，梯度是参数的偏导，梯度下降的算法会不断更新参数，不<br>断沿着梯度的反方向让参数朝着损失更小的方向更新。<br>3.损失函数：定义模型结果的损失程度，下面是以y_data-y_prediction的方差为损失函数</p>
 <p>其实下面的模型还少了一个关键的步骤，那就是构造测试集验证，不过那是评估模型的内容了，不是我们<br>这个样例的主题。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment">## 输入数据</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'data'</span>):</span><br><span class="line">     x_data = np.random.rand(<span class="number">100</span>).astype(np.float32)</span><br><span class="line">     y_data = <span class="number">0.3</span>*x_data+<span class="number">0.1</span></span><br><span class="line"><span class="comment">## 参数设置</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'parameters'</span>):</span><br><span class="line">     weight = tf.Variable(tf.random_uniform([<span class="number">1</span>],<span class="number">-1.0</span>,<span class="number">1.0</span>)) <span class="comment">#取-1到1之间的随机数</span></span><br><span class="line">     bias = tf.Variable(tf.zeros([<span class="number">1</span>])) <span class="comment">#线性回归的偏置项</span></span><br><span class="line"><span class="comment">## 构造学习函数</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'y_prediction'</span>):</span><br><span class="line">     y_prediction = weight*x_data+bias</span><br><span class="line"><span class="comment">## 定义损失函数</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'loss'</span>):</span><br><span class="line">     loss = tf.reduce_mean(tf.square(y_data-y_prediction))</span><br><span class="line"><span class="comment">## 优化函数</span></span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(<span class="number">0.5</span>)</span><br><span class="line"><span class="comment">#creat train ,minimize the loss </span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'train'</span>):</span><br><span class="line">     train = optimizer.minimize(loss)</span><br><span class="line"><span class="comment"># 初始化变量</span></span><br><span class="line"><span class="keyword">with</span> tf.name_scope(<span class="string">'init'</span>): </span><br><span class="line">     init = tf.global_variables_initializer()</span><br><span class="line"></span><br><span class="line"><span class="comment">##creat a Session </span></span><br><span class="line">sess = tf.Session()</span><br><span class="line"><span class="comment">## 保存为日志文件</span></span><br><span class="line">writer = tf.summary.FileWriter(<span class="string">'logs'</span>, sess.graph)</span><br><span class="line">sess.run(init)</span><br><span class="line"><span class="comment">## 定义训练次数</span></span><br><span class="line"><span class="keyword">for</span> step <span class="keyword">in</span> range(<span class="number">101</span>):</span><br><span class="line">  sess.run(train)</span><br><span class="line">  <span class="keyword">if</span>(step%<span class="number">10</span>)==<span class="number">0</span>:</span><br><span class="line">    <span class="keyword">print</span> (step ,<span class="string">'weight:'</span>,sess.run(weight),<span class="string">'bias:'</span>,sess.run(bias))<span class="comment">#输出每一步的结果</span></span><br></pre></td></tr></table></figure>
-<p>可能有人注意到上面模型的许多部分我都使用了with tf.name_scope()这串代码，这是在调用tensorboard<br>记录我们的训练过程，在cmd环境里敲入 tensorboard –logdir logs就可以启动tensorboard了。输入提示<br>的地址[<a href="http://host:6066]（host是自己的主机名）就可以看到下面的图形了。" target="_blank" rel="noopener">http://host:6066]（host是自己的主机名）就可以看到下面的图形了。</a><br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/line_near_test.png" alt="pic1"></p>
+<p>可能有人注意到上面模型的许多部分我都使用了with tf.name_scope()这串代码，这是在调用tensorboard<br>记录我们的训练过程，在cmd环境里敲入 tensorboard –logdir logs就可以启动tensorboard了。输入提示<br>的地址(<a href="http://host:6066" target="_blank" rel="noopener">http://host:6066</a>) （host是自己的主机名）就可以看到下面的图形了。<br><img src="https://raw.githubusercontent.com/XufengHan/Month-Cost/master/pic/line_near_test.png" alt="pic1"></p>
 <h2 id="用tensorflow识别验证码"><a href="#用tensorflow识别验证码" class="headerlink" title="用tensorflow识别验证码"></a>用tensorflow识别验证码</h2><h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>不急不急，我还在怼。</p>
 
       
@@ -490,15 +490,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">R语言 话题模型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">政府工作报告 文本分析 自然语言处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,11 +502,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
+                <a href="javascript:void(0)" class="js-tag color4">政府工作报告 文本分析 自然语言处理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
+                <a href="javascript:void(0)" class="js-tag color2">python pillow picture</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,11 +514,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">R语言 文本聚类 tm包</a>
+                <a href="javascript:void(0)" class="js-tag color2">R语言 Echarts</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">kettle ETL</a>
+                <a href="javascript:void(0)" class="js-tag color3">python tensorflow 深度学习 神经网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">R语言 文本聚类 tm包</a>
               </li>
             
             <div class="clearfix"></div>
